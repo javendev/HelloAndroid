@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_vfrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ViewPage+Fragment+RadioGroup 实现底部导航"
+            />
+        <Button
+            android:id="@+id/btn_brightnessTools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="屏幕亮度调解(BrightnessTools)"
+            />
+        <Button
+            android:id="@+id/btn_network"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络相关(NetworkUtils)"
+            />
+        <Button
+            android:id="@+id/btn_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设备相关工具类(DeviceUtils)"
+            />
+        <Button
+            android:id="@+id/btn_keyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="键盘相关工具类(KeyboardUtils)"
+            />
+        <Button
+            android:id="@+id/btn_toast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="吐司相关工具类(ToastUtils)"
+            />
+        <Button
+            android:id="@+id/btn_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="手机相关工具类(PhoneUtils)"
+            />
+        <Button
+            android:id="@+id/btn_snackbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Snackbar相关工具类(SnackbarUtils)"
+            />
+    </LinearLayout>
+
+</ScrollView>
