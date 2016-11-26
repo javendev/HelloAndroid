@@ -64,6 +64,36 @@
             android:layout_height="wrap_content"
             android:text="Snackbar相关工具类(SnackbarUtils)"
             />
+        <Button
+            android:id="@+id/btn_app"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="App工具类测试(AppUtils)"
+            />
+        <Button
+            android:id="@+id/btn_handler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Handler工具类测试(HandlerUtils)"
+            />
+        <Button
+            android:id="@+id/btn_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Image工具类测试(ImageUtils)"
+            />
+        <Button
+            android:id="@+id/btn_process"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Process工具类测试(ProcessUtils)"
+            />
+        <Button
+            android:id="@+id/btn_sdcard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SDCard工具类测试(SDCardUtils)"
+            />
     </LinearLayout>
 
 </ScrollView>

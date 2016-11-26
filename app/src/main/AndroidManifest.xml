@@ -6,14 +6,18 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!--phone-->
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--拨打电话-->
     <uses-permission android:name="android.permission.CALL_PHONE"/>
-
     <!--network-->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!--读写内存-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>}
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -38,6 +42,11 @@
         <activity android:name=".ui.activities.ToastActivity"/>
         <activity android:name=".ui.activities.PhoneActivity"/>
         <activity android:name=".ui.activities.SnackbarActivity"/>
+        <activity android:name=".ui.activities.AppActivity"/>
+        <activity android:name=".ui.activities.HandlerActivity"/>
+        <activity android:name=".ui.activities.ImageActivity"/>
+        <activity android:name=".ui.activities.ProcessActivity"/>
+        <activity android:name=".ui.activities.SDCardActivity"/>
     </application>
 
 </manifest>

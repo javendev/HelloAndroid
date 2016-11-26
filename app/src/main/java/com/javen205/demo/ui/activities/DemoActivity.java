@@ -31,6 +31,16 @@ public class DemoActivity extends AppCompatActivity {
     Button btnPhone;
     @BindView(R.id.btn_snackbar)
     Button btnSnackbar;
+    @BindView(R.id.btn_app)
+    Button btnApp;
+    @BindView(R.id.btn_handler)
+    Button btnHandler;
+    @BindView(R.id.btn_image)
+    Button btnImage;
+    @BindView(R.id.btn_process)
+    Button btnProcess;
+    @BindView(R.id.btn_sdcard)
+    Button btnSdcard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +50,10 @@ public class DemoActivity extends AppCompatActivity {
     }
 
 
-    @OnClick({R.id.btn_vfrg, R.id.btn_brightnessTools, R.id.btn_network,R.id.btn_device, R.id.btn_keyboard, R.id.btn_toast, R.id.btn_phone, R.id.btn_snackbar})
+    @OnClick({R.id.btn_vfrg, R.id.btn_brightnessTools,
+            R.id.btn_network, R.id.btn_device, R.id.btn_keyboard, R.id.btn_toast,
+            R.id.btn_phone, R.id.btn_snackbar,R.id.btn_app, R.id.btn_handler,
+            R.id.btn_image, R.id.btn_process, R.id.btn_sdcard})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_vfrg:
@@ -66,8 +79,24 @@ public class DemoActivity extends AppCompatActivity {
             case R.id.btn_snackbar:
                 startActivity(new Intent(this, SnackbarActivity.class));
                 break;
+            case R.id.btn_app:
+                startActivity(new Intent(this, AppActivity.class));
+                break;
+            case R.id.btn_handler:
+                startActivity(new Intent(this, HandlerActivity.class));
+                break;
+            case R.id.btn_image:
+                startActivity(new Intent(this, ImageActivity.class));
+                break;
+            case R.id.btn_process:
+                startActivity(new Intent(this, ProcessActivity.class));
+                break;
+            case R.id.btn_sdcard:
+                startActivity(new Intent(this, SDCardActivity.class));
+                break;
         }
     }
+
 
 
 }

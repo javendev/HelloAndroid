@@ -19,6 +19,14 @@
             android:text="@string/handler.send_msg_after_3s"
             />
 
+        <Button
+            android:id="@+id/btn_crash"
+            style="@style/BtnFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="crash测试"
+            />
+
         <TextView
             android:id="@+id/tv_about_handler0"
             style="@style/Font"

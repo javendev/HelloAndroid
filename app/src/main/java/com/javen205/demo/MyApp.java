@@ -2,6 +2,8 @@ package com.javen205.demo;
 
 import android.app.Application;
 
+import com.javen205.utils.CrashUtils;
+import com.javen205.utils.LogUtils;
 import com.orhanobut.logger.Logger;
 
 /**
@@ -19,5 +21,8 @@ public class MyApp extends Application {
         super.onCreate();
         Logger.init("Javen205");
         myApp = this;
+
+        CrashUtils.getInstance().init(this);
+        LogUtils.getBuilder(this).setTag("MyTag").setLog2FileSwitch(true).create();
     }
 }

@@ -80,6 +80,7 @@ public class CrashUtils implements UncaughtExceptionHandler {
     public void uncaughtException(Thread thread, Throwable throwable) {
         String now = new SimpleDateFormat("yy-MM-dd HH:mm:ss", Locale.getDefault()).format(new Date());
         String fullPath = crashDir + now + ".txt";
+        System.out.println("出现异常了。");
         if (!FileUtils.createOrExistsFile(fullPath)) return;
         PrintWriter pw = null;
         try {
