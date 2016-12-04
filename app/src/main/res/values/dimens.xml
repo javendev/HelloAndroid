@@ -11,4 +11,11 @@
     <dimen name="spacing_tiny">4dp</dimen>
 
     <dimen name="font_normal">12sp</dimen>
+
+
+    <dimen name="text_size_01">18sp</dimen>
+    <dimen name="text_size_02">16sp</dimen>
+    <dimen name="text_size_03">14sp</dimen>
+
+    <dimen name="margin_bottom">50dp</dimen>
 </resources>

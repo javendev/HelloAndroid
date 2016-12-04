@@ -7,11 +7,6 @@
     <string name="tab_about">关于</string>
 
 
-
-
-
-
-
     <!--Activity相关-->
     <string name="activity.start_imageActivity">Start ImageActivity</string>
 
@@ -72,4 +67,6 @@
     <string name="toast.show_short">Show Short Toast</string>
     <string name="toast.show_long">Show Long Toast</string>
     <string name="toast.cancel">Cancel Toast</string>
+
+    <string name="describe_message_splash">每日精彩视频推荐，让你大开眼界。</string>
 </resources>

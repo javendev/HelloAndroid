@@ -8,7 +8,8 @@ import android.widget.Toast;
 import com.javen205.jpay.IPay;
 import com.javen205.jpay.entity.Order;
 
-import mayihuijia.com.R;
+import xxx.R;
+
 
 public class MainActivity extends AppCompatActivity {
 
