@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -30,9 +32,29 @@ public class SplashActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        sacleLargenView();
+        sacleLargenView2();
     }
 
+    private void sacleLargenView2(){
+        Animation animation = AnimationUtils.loadAnimation(this, R.anim.sacle_largen_view);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                DemoActivity.jumpTo(SplashActivity.this);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        mImageView.startAnimation(animation);
+    }
 
     private void sacleLargenView() {
         Glide.with(this)
