@@ -12,9 +12,18 @@
     tools:context="com.javen205.jpaydemo.MainActivity">
 
     <Button
+        android:id="@+id/testWxPay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="测试JPay"
-       android:layout_centerInParent="true"
-        android:onClick="testJPay"/>
+        android:text="微信支付测试"
+        android:layout_centerInParent="true"
+        android:onClick="testWxPay"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="支付宝支付测试"
+        android:layout_below="@+id/testWxPay"
+        android:layout_centerInParent="true"
+        android:onClick="testAliPay"/>
 </RelativeLayout>

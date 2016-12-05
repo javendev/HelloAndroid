@@ -1,6 +1,6 @@
 package com.javen205.jpay.asyncTask;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,15 +11,15 @@ import com.javen205.jpay.utils.Constants;
 
 import org.json.JSONObject;
 
-public class TestPayPrepay extends AsyncTask<Object, Integer, String> {
-	private Context mContext;
-	public TestPayPrepay(Context context) {
+public class WXPayPrepay extends AsyncTask<Object, Integer, String> {
+	private Activity mContext;
+	public WXPayPrepay(Activity context) {
 		this.mContext = context;
 	}
 	
 	@Override
 	protected String doInBackground(Object... params) {
-		return  IPayLogic.getIntance(mContext).testPay((Order)params[0]);
+		return  IPayLogic.getIntance(mContext).WXPay((Order)params[0]);
 	}
 	
 	@Override
