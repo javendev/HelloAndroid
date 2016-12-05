@@ -2,22 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.javen205.demo">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <!--phone-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <!--拨打电话-->
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
-    <!--network-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <!--读写内存-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>}
+    <!-- phone -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <!-- 拨打电话 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- network -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 读写内存 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    }
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -26,7 +26,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:icon,android:theme">
-        <activity android:name=".ui.activities.DemoActivity">
+        <activity android:name=".ui.activities.SplashActivity"
+           >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,18 +36,20 @@
         </activity>
         <activity android:name=".ui.activities.BrightnessToolsActivity" />
         <activity android:name=".ui.ViewPageFragment" />
-        <activity android:name=".ui.activities.NetworkActivity"/>
-        <activity android:name=".ui.activities.DeviceActivity"/>
-        <activity android:name=".ui.activities.KeyboardActivity"
-            android:windowSoftInputMode="stateHidden|adjustPan"/>
-        <activity android:name=".ui.activities.ToastActivity"/>
-        <activity android:name=".ui.activities.PhoneActivity"/>
-        <activity android:name=".ui.activities.SnackbarActivity"/>
-        <activity android:name=".ui.activities.AppActivity"/>
-        <activity android:name=".ui.activities.HandlerActivity"/>
-        <activity android:name=".ui.activities.ImageActivity"/>
-        <activity android:name=".ui.activities.ProcessActivity"/>
-        <activity android:name=".ui.activities.SDCardActivity"/>
+        <activity android:name=".ui.activities.NetworkActivity" />
+        <activity android:name=".ui.activities.DeviceActivity" />
+        <activity
+            android:name=".ui.activities.KeyboardActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name=".ui.activities.ToastActivity" />
+        <activity android:name=".ui.activities.PhoneActivity" />
+        <activity android:name=".ui.activities.SnackbarActivity" />
+        <activity android:name=".ui.activities.AppActivity" />
+        <activity android:name=".ui.activities.HandlerActivity" />
+        <activity android:name=".ui.activities.ImageActivity" />
+        <activity android:name=".ui.activities.ProcessActivity" />
+        <activity android:name=".ui.activities.SDCardActivity" />
+        <activity android:name=".ui.activities.DemoActivity"/>
     </application>
 
 </manifest>

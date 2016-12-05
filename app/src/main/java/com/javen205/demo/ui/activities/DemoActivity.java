@@ -1,5 +1,6 @@
 package com.javen205.demo.ui.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -41,6 +42,12 @@ public class DemoActivity extends AppCompatActivity {
     Button btnProcess;
     @BindView(R.id.btn_sdcard)
     Button btnSdcard;
+
+    public static void jumpTo(Activity activity) {
+        Intent intent = new Intent(activity, DemoActivity.class);
+        activity.startActivity(intent);
+        activity.finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
