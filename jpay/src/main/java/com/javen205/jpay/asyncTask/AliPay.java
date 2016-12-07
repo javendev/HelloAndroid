@@ -47,7 +47,7 @@ public class AliPay extends AsyncTask<Object, Integer, String> {
 			}
 		} catch (Exception e) {
 			Log.e("PAY_GET", "异常："+e.getMessage());
-//        	Toast.makeText(mContext, "异常："+e.getMessage(), Toast.LENGTH_SHORT).show();
+        	Toast.makeText(mContext, "异常："+e.getMessage(), Toast.LENGTH_SHORT).show();
         }
 		super.onPostExecute(result);
 	}

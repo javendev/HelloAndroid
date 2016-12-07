@@ -3,6 +3,7 @@ package com.javen205.jpay.entity;
 public class Order {
 	private String appId;
 	private String body;
+	private String subject;
 	private String deviceInfo;//可选 设备ID
 	private String nofityUrl;
 	private String paraTradeNo;
@@ -66,5 +67,12 @@ public class Order {
 	public void setChannelId(String channelId) {
 		this.channelId = channelId;
 	}
-	
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 }

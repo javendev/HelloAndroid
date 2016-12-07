@@ -1,8 +1,10 @@
 package com.javen205.jpay.service;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -66,12 +68,27 @@ public class IPayLogic {
 	}
 
 	/**
-	 * 获取支付宝订单信息
+	 * 获取支付宝App支付订单信息
 	 * @return
 	 */
 	public String getAliPayOrderInfo(Order order){
 		String result=HttpKit.get(Constants.ALIPAY_URL);
 		return result;
+	}
+
+	/**
+	 * 获取支付宝Wap支付
+	 * @return
+	 */
+	public void getAliWapPayUrl(Order order){
+		StringBuffer sbf=new StringBuffer();
+		sbf.append(Constants.ALIWAPPAY_URL)
+				.append("?body=").append(order.getBody())
+				.append("&subject=").append(order.getSubject())
+				.append("&total_amount=").append(order.getTotalFee())
+				.append("&passback_params=").append(order.getAttach());
+
+		startAliWapPay(sbf.toString());
 	}
 
 
@@ -104,6 +121,14 @@ public class IPayLogic {
 		 Thread payThread = new Thread(payRunnable);
 		 payThread.start();
 	 }
+
+	public void startAliWapPay(String from){
+//		WebViewActivity.jumpTo(mContext,false,from);
+		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(from));
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		mContext.startActivity(intent);
+	}
+
 
 	/**
 	 * 调起支付

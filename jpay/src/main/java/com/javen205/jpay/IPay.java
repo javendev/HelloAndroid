@@ -35,7 +35,7 @@ public class IPay {
 	}
 
 	public enum PayMode{
-		WXPAY,ALIPAY
+		WXPAY,ALIPAY,ALIWAPPAY
 	}
 
 	public void toPay(PayMode payMode, Order order, IPayListener listener){
@@ -43,6 +43,8 @@ public class IPay {
 			toWxPay(order, listener);
 		}else if (payMode.name().equalsIgnoreCase(PayMode.ALIPAY.name())) {
 			toAliPay(order, listener);
+		}else if (payMode.name().equalsIgnoreCase(PayMode.ALIWAPPAY.name())) {
+			toAliWapPay(order, listener);
 		}
 	}
 
@@ -64,6 +66,17 @@ public class IPay {
 		if (order != null) {
 			Constants.payListener = listener;
 			new AliPay(mContext).execute(order);
+		}else {
+			Toast.makeText(mContext, "参数异常 order is null", Toast.LENGTH_LONG).show();
+		}
+	}
+
+
+	public void toAliWapPay(Order order,IPayListener listener){
+		if (order != null) {
+			Constants.payListener = listener;
+			IPayLogic.getIntance(mContext).getAliWapPayUrl(order);
+
 		}else {
 			Toast.makeText(mContext, "参数异常 order is null", Toast.LENGTH_LONG).show();
 		}
