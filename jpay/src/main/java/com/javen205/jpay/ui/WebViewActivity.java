@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -36,7 +36,8 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_web);
         webView = (WebView) findViewById(R.id.web_wv);
         bar=(ProgressBar) findViewById(R.id.web_pb);
@@ -59,9 +60,14 @@ public class WebViewActivity extends AppCompatActivity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                Log.e("WebViewActivity", "访问的url地址：" + url);
+                //唤起支付宝
+                if(parseScheme(url)){
+                    return true;
+                }
                 view.loadUrl(url);
                 return true;
-            }
+        }
 
             @Override
             public void onPageFinished(WebView view, String url) {
@@ -94,15 +100,37 @@ public class WebViewActivity extends AppCompatActivity {
     private void setSettings(WebSettings setting) {
         setting.setDefaultTextEncodingName("utf-8");
         setting.setJavaScriptEnabled(true);
-        setting.setBuiltInZoomControls(true);
-        setting.setDisplayZoomControls(false);
-        setting.setSupportZoom(true);
 
-        setting.setDomStorageEnabled(true);
-        setting.setDatabaseEnabled(true);
-        // 全屏显示
-        setting.setLoadWithOverviewMode(true);
-        setting.setUseWideViewPort(true);
+//        CookieManager.getInstance().setAcceptCookie(true);
+        // 设置可以访问文件
+//        setting.setAllowFileAccess(true);
+////        // 设置支持缩放
+//        setting.setSupportZoom(true);
+//        setting.setBuiltInZoomControls(false);
+//        setting.setDisplayZoomControls(false);
+//
+//        setting.setDomStorageEnabled(true);
+//        setting.setDatabaseEnabled(true);
+//        // 全屏显示
+//        setting.setLoadWithOverviewMode(true);
+//        setting.setUseWideViewPort(true);
+    }
+
+    public boolean parseScheme(String url) {
+        if (url.contains("platformapi/startApp")) {
+            // 如果没有安装支付宝会崩溃掉
+            try{
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                Intent intent = Intent.parseUri(url, Intent.URI_INTENT_SCHEME);
+                startActivity(intent);
+            }catch (Exception e){
+
+            }
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //改写物理按键——返回的逻辑

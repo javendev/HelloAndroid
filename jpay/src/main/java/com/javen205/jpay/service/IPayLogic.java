@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.javen205.jpay.entity.Order;
+import com.javen205.jpay.ui.WebViewActivity;
 import com.javen205.jpay.utils.Constants;
 import com.javen205.jpay.utils.HttpKit;
 import com.javen205.jpay.utils.PayResult;
@@ -88,7 +89,8 @@ public class IPayLogic {
 				.append("&total_amount=").append(order.getTotalFee())
 				.append("&passback_params=").append(order.getAttach());
 
-		startAliWapPay(sbf.toString());
+//		startAliWapPay(sbf.toString());
+		WebViewActivity.jumpTo(mContext,true,sbf.toString());
 	}
 
 
