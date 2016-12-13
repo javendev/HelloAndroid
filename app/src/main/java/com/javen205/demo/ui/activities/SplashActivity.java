@@ -3,7 +3,7 @@ package com.javen205.demo.ui.activities;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -26,7 +26,14 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //只对继承Activity有效
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        if (getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_splash);
         StatusBarUtil.setTranslucentBackground(this);
 
