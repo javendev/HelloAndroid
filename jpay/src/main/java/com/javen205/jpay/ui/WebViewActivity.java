@@ -1,11 +1,13 @@
 package com.javen205.jpay.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.KeyEvent;
+import android.text.TextUtils;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -13,6 +15,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.alipay.sdk.app.PayTask;
+import com.alipay.sdk.util.H5PayResultModel;
 import com.javen205.jpay.R;
 
 
@@ -45,12 +49,38 @@ public class WebViewActivity extends AppCompatActivity {
         initView();
     }
     private void initView() {
-
-        Bundle bundle = getIntent().getExtras();
-        if (bundle !=null){
-            isUrl = bundle.getBoolean(KEY_ISURL);
-            content = bundle.getString(KEY_CONTENT);
+        Bundle extras = null;
+        try {
+            extras = getIntent().getExtras();
+        } catch (Exception e) {
+            finish();
+            return;
         }
+        if (extras == null) {
+            finish();
+            return;
+        }
+        try {
+            isUrl = extras.getBoolean(KEY_ISURL);
+            content = extras.getString(KEY_CONTENT);
+        } catch (Exception e) {
+            finish();
+            return;
+        }
+        if (TextUtils.isEmpty(content)) {
+            // 测试H5支付，必须设置要打开的url网站
+            new AlertDialog.Builder(this).setTitle("警告")
+                    .setMessage("必须配置content")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            finish();
+                        }
+                    }).show();
+
+        }
+
         setSettings(webView.getSettings());
         if (isUrl){
             webView.loadUrl(content);
@@ -58,7 +88,42 @@ public class WebViewActivity extends AppCompatActivity {
             webView.loadDataWithBaseURL(null, content, "text/html", "utf-8", null);
         }
 
-        webView.setWebViewClient(new WebViewClient() {
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(final WebView view, String url) {
+                if (!(url.startsWith("http") || url.startsWith("https"))) {
+                    return true;
+                }
+
+                final PayTask task = new PayTask(WebViewActivity.this);
+                final String ex = task.fetchOrderInfoFromH5PayUrl(url);
+                if (!TextUtils.isEmpty(ex)) {
+                    System.out.println("paytask:::::" + url);
+                    new Thread(new Runnable() {
+                        public void run() {
+                            System.out.println("payTask:::" + ex);
+                            final H5PayResultModel result = task.h5Pay(ex, true);
+                            if (!TextUtils.isEmpty(result.getReturnUrl())) {
+                                WebViewActivity.this.runOnUiThread(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        view.loadUrl(result.getReturnUrl());
+                                    }
+                                });
+                            }
+                        }
+                    }).start();
+                } else {
+                    view.loadUrl(url);
+                }
+                return true;
+            }
+
+
+        });
+
+        /*webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 Log.e("WebViewActivity", "访问的url地址：" + url);
@@ -74,7 +139,7 @@ public class WebViewActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
             }
-        });
+        });*/
         webView.setWebChromeClient(new WebChromeClient(){
             @Override
             public void onReceivedTitle(WebView view, String title) {
@@ -102,19 +167,15 @@ public class WebViewActivity extends AppCompatActivity {
         setting.setDefaultTextEncodingName("utf-8");
         setting.setJavaScriptEnabled(true);
 
-//        CookieManager.getInstance().setAcceptCookie(true);
-        // 设置可以访问文件
-//        setting.setAllowFileAccess(true);
-////        // 设置支持缩放
-//        setting.setSupportZoom(true);
-//        setting.setBuiltInZoomControls(false);
-//        setting.setDisplayZoomControls(false);
-//
-//        setting.setDomStorageEnabled(true);
-//        setting.setDatabaseEnabled(true);
-//        // 全屏显示
-//        setting.setLoadWithOverviewMode(true);
-//        setting.setUseWideViewPort(true);
+        setting.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        setting.setSupportMultipleWindows(true);
+        setting.setJavaScriptEnabled(true);
+        setting.setSavePassword(false);
+        setting.setJavaScriptCanOpenWindowsAutomatically(true);
+        setting.setMinimumFontSize(setting.getMinimumFontSize() + 8);
+        setting.setAllowFileAccess(false);
+        setting.setTextSize(WebSettings.TextSize.NORMAL);
+        webView.setVerticalScrollbarOverlay(true);
     }
 
     public boolean parseScheme(String url) {
@@ -134,8 +195,22 @@ public class WebViewActivity extends AppCompatActivity {
         }
     }
 
-    //改写物理按键——返回的逻辑
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (webView.canGoBack()){
+            webView.goBack();
+        }else {
+            finish();
+        }
+    }
+
+
+    /*@Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (webView.canGoBack()) {
@@ -146,5 +221,5 @@ public class WebViewActivity extends AppCompatActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
-    }
+    }*/
 }
